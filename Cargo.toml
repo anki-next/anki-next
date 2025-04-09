@@ -1,0 +1,8 @@
+[workspace]
+resolver = "2"
+members = ["apps/cli"]
+
+[workspace.dependencies]
+anki = { git = "https://github.com/ankitects/anki.git", rev = "038d85b1d9e1896e93a3e4a26f600c79ddc33611" }
+anki_proto = { git = "https://github.com/ankitects/anki.git", rev = "038d85b1d9e1896e93a3e4a26f600c79ddc33611" }
+prost = "0.13"
