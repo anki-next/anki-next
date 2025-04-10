@@ -5,6 +5,7 @@ edition = "2021"
 
 
 [dependencies]
+anki_proto_gen = {workspace = true}
 
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

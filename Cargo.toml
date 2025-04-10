@@ -1,4 +1,3 @@
-
 [workspace]
 resolver = '2'
 members = [
@@ -6,6 +5,7 @@ members = [
 ]
 
 [workspace.dependencies]
-anki = { git = 'https://github.com/ankitects/anki.git', rev = '038d85b1d9e1896e93a3e4a26f600c79ddc33611' }
-anki_proto = { git = 'https://github.com/ankitects/anki.git', rev = '038d85b1d9e1896e93a3e4a26f600c79ddc33611' }
+anki = { path = "./anki/rslib" }
+anki_proto = { path = "./anki/rslib/proto" }
+anki_proto_gen = { path = "./anki/rslib/proto_gen" }
 prost = '0.13'
