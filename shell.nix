@@ -1,13 +1,8 @@
 let
   pins = import ./npins;
   pkgs = import pins.nixpkgs { };
+  packages = import ./deps.nix pkgs;
 in
 pkgs.mkShellNoCC {
-  packages = with pkgs; [
-    nixfmt-rfc-style
-    nodejs_23
-    corepack_23
-    rustup
-    protobuf_21
-  ];
+  inherit packages;
 }
