@@ -10,9 +10,15 @@
       "!{projectRoot}/.eslintrc.json",
       "!{projectRoot}/eslint.config.mjs"
     ],
-    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
+    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"],
+    "upstream": [
+      {
+        "runtime": "git submodule status anki"
+      }
+    ]
   },
   "plugins": [
+    "@monodon/rust",
     {
       "plugin": "@nx/js/typescript",
       "options": {
