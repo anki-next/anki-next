@@ -5,15 +5,31 @@
   "scripts": {},
   "private": true,
   "devDependencies": {
+    "@eslint/js": "^9.8.0",
     "@monodon/rust": "^2.3.0",
+    "@nx/eslint": "20.7.2",
+    "@nx/eslint-plugin": "20.7.2",
     "@nx/js": "20.7.2",
+    "@nx/vite": "20.7.2",
+    "@nx/web": "20.7.2",
     "@swc-node/register": "~1.9.1",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
+    "@types/node": "18.16.9",
+    "@vitest/ui": "^3.0.0",
+    "eslint": "^9.8.0",
+    "eslint-config-prettier": "^10.0.0",
+    "jiti": "2.4.2",
+    "jsonc-eslint-parser": "^2.1.0",
     "nx": "20.7.2",
     "prettier": "^2.6.2",
     "tslib": "^2.3.0",
-    "typescript": "~5.7.2"
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.19.0",
+    "vite": "^6.0.0",
+    "vite-plugin-dts": "~4.5.0",
+    "vitest": "^3.0.0"
   },
-  "packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0"
+  "packageManager": "pnpm@10.8.0+sha512.0e82714d1b5b43c74610193cb20734897c1d00de89d0e18420aebc5977fa13d780a9cb05734624e81ebd81cc876cd464794850641c48b9544326b5622ca29971",
+  "dependencies": {}
 }
