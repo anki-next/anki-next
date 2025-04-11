@@ -1,11 +1,6 @@
 [workspace]
-resolver = '2'
-members = [
-	'tasks/query_generator',
-]
+resolver = "2"
+members = ["tasks/query_generator"]
+exclude = ["anki"]
 
 [workspace.dependencies]
-anki = { path = "./anki/rslib" }
-anki_proto = { path = "./anki/rslib/proto" }
-anki_proto_gen = { path = "./anki/rslib/proto_gen" }
-prost = '0.13'
