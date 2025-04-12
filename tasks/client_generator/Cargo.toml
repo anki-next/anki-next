@@ -1,5 +1,5 @@
 [package]
-name = "query_generator"
+name = "client_generator"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,6 +7,8 @@ edition = "2021"
 anki_io = { version = "0.0.0", path = "../../anki/rslib/io" }
 anki_process = { version = "0.0.0", path = "../../anki/rslib/process" }
 anki_proto_gen = { version = "0.0.0", path = "../../anki/rslib/proto_gen" }
+anki_proto = { version = "0.0.0", path = "../../anki/rslib/proto" }
 anki_i18n = { version = "0.0.0", path = "../../anki/rslib/i18n" }
+prost-reflect = "0.14.7"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

@@ -1,15 +1,15 @@
 {
-  "name": "query_generator",
+  "name": "client_generator",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "tasks/query_generator/src",
+  "sourceRoot": "tasks/client_generator/src",
   "targets": {
     "build": {
       "cache": true,
       "executor": "@monodon/rust:build",
       "outputs": ["{options.target-dir}"],
       "options": {
-        "target-dir": "dist/target/query_generator"
+        "target-dir": "dist/target/client_generator"
       },
       "configurations": {
         "production": {
@@ -22,7 +22,7 @@
       "executor": "@monodon/rust:test",
       "outputs": ["{options.target-dir}"],
       "options": {
-        "target-dir": "dist/target/query_generator"
+        "target-dir": "dist/target/client_generator"
       },
       "configurations": {
         "production": {
@@ -35,14 +35,14 @@
       "executor": "@monodon/rust:lint",
       "outputs": ["{options.target-dir}"],
       "options": {
-        "target-dir": "dist/target/query_generator"
+        "target-dir": "dist/target/client_generator"
       }
     },
     "run": {
       "executor": "@monodon/rust:run",
       "outputs": ["{options.target-dir}"],
       "options": {
-        "target-dir": "dist/target/query_generator"
+        "target-dir": "dist/target/client_generator"
       },
       "configurations": {
         "production": {

@@ -12,7 +12,7 @@
     "stable-${ver}"; # or "unstable"
 
   # Use https://search.nixos.org/packages to find packages
-  packages = import ../deps.nix pkgs;
+  packages = import ../nix/deps.nix pkgs;
 
   # Sets environment variables in the workspace
   env = { };

@@ -1,0 +1,2 @@
+[env]
+DESCRIPTORS_BIN = { value = "node_modules/.repo-temp/descriptors.bin", relative = true }
