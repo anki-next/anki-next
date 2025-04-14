@@ -1,4 +1,5 @@
 use anki_proto_gen::{descriptors_path, get_services};
+use std::{env, fs};
 
 fn main() {
     let descriptors_bytes = include_bytes!(env!("DESCRIPTORS_BIN"));
@@ -7,9 +8,8 @@ fn main() {
             .as_ref()
             .unwrap(),
     );
-    let svcs = services
-        .iter()
-        .map(|svc| svc.name.clone())
-        .collect::<Vec<_>>();
-    println!("{:?}", services);
+
+    let cwd = env::current_dir().unwrap();
+    let target_dir = cwd.join("packages/rpc-client/src/generated");
+    fs::create_dir_all(&target_dir).unwrap();
 }

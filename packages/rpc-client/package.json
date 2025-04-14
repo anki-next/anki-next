@@ -15,5 +15,26 @@
       "default": "./dist/index.js"
     }
   },
-  "dependencies": {}
+  "dependencies": {},
+  "nx": {
+    "targets": {
+      "prebuild": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "./dist/target/client_generator/debug/client_generator"
+        },
+        "configurations": {
+          "production": {
+            "command": "./dist/target/client_generator/release/client_generator"
+          }
+        },
+        "dependsOn": [
+          "^build"
+        ]
+      }
+    },
+    "implicitDependencies": [
+      "client_generator"
+    ]
+  }
 }

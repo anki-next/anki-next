@@ -7,6 +7,7 @@
     "build": {
       "cache": true,
       "executor": "@monodon/rust:build",
+      "inputs": ["default", "upstream/anki"],
       "outputs": ["{options.target-dir}"],
       "options": {
         "target-dir": "dist/target/client_generator"
@@ -40,6 +41,7 @@
     },
     "run": {
       "executor": "@monodon/rust:run",
+      "inputs": ["default", "upstream/anki"],
       "outputs": ["{options.target-dir}"],
       "options": {
         "target-dir": "dist/target/client_generator"

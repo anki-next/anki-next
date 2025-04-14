@@ -40,4 +40,4 @@ jobs:
       # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
       - uses: cachix/install-nix-action@v31
       - run: nix-shell --run "just setup"
-      - run: nix-shell --run "pnpm exec nx affected -t lint test build"
+      - run: nix-shell --run "pnpm exec nx affected -t lint test build --configuration=production"

@@ -11,11 +11,17 @@
       "!{projectRoot}/eslint.config.mjs"
     ],
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"],
-    "upstream": [
+    "upstream/anki": [
       {
         "runtime": "git submodule status anki"
       }
     ]
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build", "prebuild"],
+      "cache": true
+    }
   },
   "plugins": [
     "@monodon/rust",
