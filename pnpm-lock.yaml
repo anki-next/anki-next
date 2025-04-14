@@ -81,7 +81,15 @@ importers:
         specifier: ^3.0.0
         version: 3.1.1(@types/node@18.16.9)(@vitest/ui@3.1.1)(jiti@2.4.2)(yaml@2.7.1)
 
-  packages/rpc-client: {}
+  packages/rpc-client:
+    dependencies:
+      '@protobuf-ts/runtime-rpc':
+        specifier: ^2.9.6
+        version: 2.9.6
+    devDependencies:
+      '@protobuf-ts/plugin':
+        specifier: ^2.9.6
+        version: 2.9.6
 
 packages:
 
@@ -1502,6 +1510,23 @@ packages:
 
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
+
+  '@protobuf-ts/plugin-framework@2.9.6':
+    resolution: {integrity: sha512-w7A1RXrDCiVzcaRE6YJP7FCARuAFe/Vc4SNQnHAi4CF0V6mEtyjAYEIC5BNYgIRaJEqB26zzsBQjIem3R02SCA==}
+
+  '@protobuf-ts/plugin@2.9.6':
+    resolution: {integrity: sha512-Wpv5rkXeu6E5Y4r0TjWE0bzRGddiTYl/RM+tLgVlS0r8CqOBqNAmlWv+s8ltf/F75rVrahUal0cpyhFwha9GRA==}
+    hasBin: true
+
+  '@protobuf-ts/protoc@2.9.6':
+    resolution: {integrity: sha512-c0XvAPDIBAovH9HxV8gBv8gzOTreQIqibcusrB1+DxvFiSvy+2V1tjbUmG5gJEbjk3aAOaoj0a3+QuE+P28xUw==}
+    hasBin: true
+
+  '@protobuf-ts/runtime-rpc@2.9.6':
+    resolution: {integrity: sha512-0UeqDRzNxgsh08lY5eWzFJNfD3gZ8Xf+WG1HzbIAbVAigzigwjwsYNNhTeas5H3gco1U5owTzCg177aambKOOw==}
+
+  '@protobuf-ts/runtime@2.9.6':
+    resolution: {integrity: sha512-C0CfpKx4n4LBbUrajOdRj2BTbd3qBoK0SiKWLq7RgCoU6xiN4wesBMFHUOBp3fFzKeZwgU8Q2KtzaqzIvPLRXg==}
 
   '@rollup/pluginutils@5.1.4':
     resolution: {integrity: sha512-USm05zrsFxYLPdWWq+K3STlWiT/3ELn3RcV5hJMghpeAIhxfsUIg6mt12CBJBInWMV4VneoV7SfGv8xIwo2qNQ==}
@@ -3203,6 +3228,11 @@ packages:
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
       typescript: '>=4.8.4 <5.9.0'
+
+  typescript@3.9.10:
+    resolution: {integrity: sha512-w6fIxVE/H1PkLKcCPsFqKE7Kv7QUwhU8qQY2MueZXWx5cPZdwFupLgKK3vntcK98BtNHZtAF4LA/yl2a7k8R6Q==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
 
   typescript@5.7.3:
     resolution: {integrity: sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==}
@@ -4965,6 +4995,27 @@ snapshots:
 
   '@polka/url@1.0.0-next.29': {}
 
+  '@protobuf-ts/plugin-framework@2.9.6':
+    dependencies:
+      '@protobuf-ts/runtime': 2.9.6
+      typescript: 3.9.10
+
+  '@protobuf-ts/plugin@2.9.6':
+    dependencies:
+      '@protobuf-ts/plugin-framework': 2.9.6
+      '@protobuf-ts/protoc': 2.9.6
+      '@protobuf-ts/runtime': 2.9.6
+      '@protobuf-ts/runtime-rpc': 2.9.6
+      typescript: 3.9.10
+
+  '@protobuf-ts/protoc@2.9.6': {}
+
+  '@protobuf-ts/runtime-rpc@2.9.6':
+    dependencies:
+      '@protobuf-ts/runtime': 2.9.6
+
+  '@protobuf-ts/runtime@2.9.6': {}
+
   '@rollup/pluginutils@5.1.4(rollup@4.39.0)':
     dependencies:
       '@types/estree': 1.0.7
@@ -6688,6 +6739,8 @@ snapshots:
       typescript: 5.7.3
     transitivePeerDependencies:
       - supports-color
+
+  typescript@3.9.10: {}
 
   typescript@5.7.3: {}
 

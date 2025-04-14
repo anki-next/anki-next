@@ -1,3 +1,3 @@
-export function rpcClient(): string {
-  return 'rpc-client';
-}
+import { RpcTransport } from '@protobuf-ts/runtime-rpc';
+
+export function createClient(transport: RpcTransport) {}

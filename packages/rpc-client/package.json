@@ -15,13 +15,27 @@
       "default": "./dist/index.js"
     }
   },
-  "dependencies": {},
   "nx": {
     "targets": {
-      "prebuild": {
+      "protobuf-ts": {
+        "cache": true,
+        "executor": "nx:run-commands",
+        "inputs": [
+          "upstream/anki"
+        ],
+        "outputs": [
+          "{projectRoot}/src/generated/protobuf"
+        ],
+        "options": {
+          "command": "pnpm protoc --ts_out ./src/generated/protobuf --proto_path ../../anki/proto --ts_opt ts_nocheck --ts_opt eslint_disable ../../anki/proto/anki/*.proto",
+          "cwd": "{projectRoot}"
+        }
+      },
+      "client-generator": {
         "executor": "nx:run-commands",
         "options": {
-          "command": "./dist/target/client_generator/debug/client_generator"
+          "command": "./dist/target/client_generator/debug/client_generator",
+          "cwd": "{workspaceRoot}"
         },
         "configurations": {
           "production": {
@@ -31,10 +45,27 @@
         "dependsOn": [
           "^build"
         ]
+      },
+      "build": {
+        "dependsOn": [
+          {
+            "projects": "client_generator",
+            "target": "run"
+          },
+          "protobuf-ts",
+          "client-generator",
+          "^build"
+        ]
       }
     },
     "implicitDependencies": [
       "client_generator"
     ]
+  },
+  "devDependencies": {
+    "@protobuf-ts/plugin": "^2.9.6"
+  },
+  "dependencies": {
+    "@protobuf-ts/runtime-rpc": "^2.9.6"
   }
 }

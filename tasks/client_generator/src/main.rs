@@ -1,5 +1,7 @@
-use anki_proto_gen::{descriptors_path, get_services};
+use anki_proto_gen::get_services;
 use std::{env, fs};
+
+mod client;
 
 fn main() {
     let descriptors_bytes = include_bytes!(env!("DESCRIPTORS_BIN"));
@@ -10,6 +12,6 @@ fn main() {
     );
 
     let cwd = env::current_dir().unwrap();
-    let target_dir = cwd.join("packages/rpc-client/src/generated");
-    fs::create_dir_all(&target_dir).unwrap();
+    let target_dir = cwd.join("packages/rpc-client/src/generated/");
+    client::generate(&target_dir, &services);
 }
