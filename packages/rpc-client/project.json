@@ -1,0 +1,31 @@
+{
+  "name": "rpc-client",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "targets": {
+    "protobuf-ts": {
+      "cache": true,
+      "executor": "nx:run-commands",
+      "inputs": ["upstream/anki"],
+      "outputs": ["{projectRoot}/src/generated/protobuf"],
+      "options": {
+        "command": "pnpm protoc --ts_out ./src/generated/protobuf --proto_path ../../anki/proto --ts_opt ts_nocheck --ts_opt eslint_disable ../../anki/proto/anki/*.proto",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "build": {
+      "dependsOn": [
+        {
+          "projects": "client_generator",
+          "target": "run"
+        },
+        "protobuf-ts",
+        "^build"
+      ]
+    },
+    "lint": {
+      "dependsOn": ["build"]
+    }
+  },
+  "implicitDependencies": ["client_generator"]
+}
