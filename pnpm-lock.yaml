@@ -83,9 +83,15 @@ importers:
 
   packages/rpc-client:
     dependencies:
+      '@protobuf-ts/runtime':
+        specifier: ^2.9.6
+        version: 2.9.6
       '@protobuf-ts/runtime-rpc':
         specifier: ^2.9.6
         version: 2.9.6
+      type-fest:
+        specifier: ^4.39.1
+        version: 4.39.1
     devDependencies:
       '@protobuf-ts/plugin':
         specifier: ^2.9.6
@@ -3221,6 +3227,10 @@ packages:
   type-fest@0.21.3:
     resolution: {integrity: sha512-t0rzBq87m3fVcduHDUFhKmyyX+9eo6WQjZvf51Ea/M0Q7+T374Jp1aUiyUl0GKxp8M/OETVHSDvmkyPgvX+X2w==}
     engines: {node: '>=10'}
+
+  type-fest@4.39.1:
+    resolution: {integrity: sha512-uW9qzd66uyHYxwyVBYiwS4Oi0qZyUqwjU+Oevr6ZogYiXt99EOYtwvzMSLw1c3lYo2HzJsep/NB23iEVEgjG/w==}
+    engines: {node: '>=16'}
 
   typescript-eslint@8.29.1:
     resolution: {integrity: sha512-f8cDkvndhbQMPcysk6CUSGBWV+g1utqdn71P5YKwMumVMOG/5k7cHq0KyG4O52nB0oKS4aN2Tp5+wB4APJGC+w==}
@@ -6729,6 +6739,8 @@ snapshots:
       prelude-ls: 1.2.1
 
   type-fest@0.21.3: {}
+
+  type-fest@4.39.1: {}
 
   typescript-eslint@8.29.1(eslint@9.24.0(jiti@2.4.2))(typescript@5.7.3):
     dependencies:

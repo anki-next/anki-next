@@ -31,21 +31,6 @@
           "cwd": "{projectRoot}"
         }
       },
-      "client-generator": {
-        "executor": "nx:run-commands",
-        "options": {
-          "command": "./dist/target/client_generator/debug/client_generator",
-          "cwd": "{workspaceRoot}"
-        },
-        "configurations": {
-          "production": {
-            "command": "./dist/target/client_generator/release/client_generator"
-          }
-        },
-        "dependsOn": [
-          "^build"
-        ]
-      },
       "build": {
         "dependsOn": [
           {
@@ -53,7 +38,6 @@
             "target": "run"
           },
           "protobuf-ts",
-          "client-generator",
           "^build"
         ]
       }
@@ -66,6 +50,8 @@
     "@protobuf-ts/plugin": "^2.9.6"
   },
   "dependencies": {
-    "@protobuf-ts/runtime-rpc": "^2.9.6"
+    "@protobuf-ts/runtime": "^2.9.6",
+    "@protobuf-ts/runtime-rpc": "^2.9.6",
+    "type-fest": "^4.39.1"
   }
 }

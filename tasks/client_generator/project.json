@@ -40,9 +40,13 @@
       }
     },
     "run": {
+      "cache": true,
       "executor": "@monodon/rust:run",
       "inputs": ["default", "upstream/anki"],
-      "outputs": ["{options.target-dir}"],
+      "outputs": [
+        "{options.target-dir}",
+        "{workspaceRoot}/packages/rpc-client/src/generated/service.ts"
+      ],
       "options": {
         "target-dir": "dist/target/client_generator"
       },

@@ -1,1 +1,1 @@
-export * from './lib/rpc-client.js';
+export * from './transport.ts';
