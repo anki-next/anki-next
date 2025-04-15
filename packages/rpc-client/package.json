@@ -40,6 +40,11 @@
           "protobuf-ts",
           "^build"
         ]
+      },
+      "lint": {
+        "dependsOn": [
+          "build"
+        ]
       }
     },
     "implicitDependencies": [
