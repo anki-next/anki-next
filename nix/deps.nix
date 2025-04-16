@@ -6,4 +6,19 @@ pkgs: with pkgs; [
   rustup
   protobuf_21
   just
+  pkg-config
+  glib.dev
+  gobject-introspection
+  at-spi2-atk
+  atkmm
+  cairo
+  gdk-pixbuf
+  glib
+  gtk3
+  harfbuzz
+  librsvg
+  libsoup_3
+  pango
+  webkitgtk_4_1
+  openssl
 ]

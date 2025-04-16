@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["tasks/client_generator"]
+members = ["tasks/client_generator","apps/tauri"]
 exclude = ["anki"]
 
 [workspace.dependencies]
