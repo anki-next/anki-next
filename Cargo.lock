@@ -195,12 +195,24 @@ dependencies = [
 ]
 
 [[package]]
-name = "anki_backend"
+name = "anki-backend"
 version = "0.1.0"
 dependencies = [
  "anki",
  "anki_proto",
  "prost",
+]
+
+[[package]]
+name = "anki-next-tauri"
+version = "0.1.0"
+dependencies = [
+ "log",
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-build",
+ "tauri-plugin-log",
 ]
 
 [[package]]
@@ -277,18 +289,6 @@ name = "anyhow"
 version = "1.0.97"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dcfed56ad506cb2c684a14971b8861fdc3baaaae314b9e5f9bb532cbe3ba7a4f"
-
-[[package]]
-name = "app-tauri"
-version = "0.1.0"
-dependencies = [
- "log",
- "serde",
- "serde_json",
- "tauri",
- "tauri-build",
- "tauri-plugin-log",
-]
 
 [[package]]
 name = "arbitrary"
@@ -1173,7 +1173,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "client_generator"
+name = "client-generator"
 version = "0.1.0"
 dependencies = [
  "anki_i18n",

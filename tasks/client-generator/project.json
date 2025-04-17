@@ -1,8 +1,8 @@
 {
-  "name": "client_generator",
+  "name": "client-generator",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "tasks/client_generator/src",
+  "sourceRoot": "tasks/client-generator/src",
   "targets": {
     "build": {
       "cache": true,
@@ -10,7 +10,7 @@
       "inputs": ["default", "upstream/anki"],
       "outputs": ["{options.target-dir}"],
       "options": {
-        "target-dir": "dist/target/client_generator"
+        "target-dir": "dist/target/client-generator"
       },
       "configurations": {
         "production": {
@@ -23,7 +23,7 @@
       "executor": "@monodon/rust:test",
       "outputs": ["{options.target-dir}"],
       "options": {
-        "target-dir": "dist/target/client_generator"
+        "target-dir": "dist/target/client-generator"
       },
       "configurations": {
         "production": {
@@ -36,7 +36,7 @@
       "executor": "@monodon/rust:lint",
       "outputs": ["{options.target-dir}"],
       "options": {
-        "target-dir": "dist/target/client_generator"
+        "target-dir": "dist/target/client-generator"
       }
     },
     "run": {
@@ -48,7 +48,7 @@
         "{workspaceRoot}/packages/rpc-client/src/generated/service.ts"
       ],
       "options": {
-        "target-dir": "dist/target/client_generator"
+        "target-dir": "dist/target/client-generator"
       },
       "configurations": {
         "production": {

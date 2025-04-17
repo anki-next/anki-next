@@ -1,14 +1,14 @@
 {
-  "name": "anki_backend",
+  "name": "anki-backend",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "sourceRoot": "packages/anki_backend/src",
+  "sourceRoot": "packages/anki-backend/src",
   "targets": {
     "build": {
       "executor": "@monodon/rust:check",
       "outputs": ["{options.target-dir}"],
       "options": {
-        "target-dir": "dist/target/anki_backend"
+        "target-dir": "dist/target/anki-backend"
       }
     },
     "test": {
@@ -16,7 +16,7 @@
       "executor": "@monodon/rust:test",
       "outputs": ["{options.target-dir}"],
       "options": {
-        "target-dir": "dist/target/anki_backend"
+        "target-dir": "dist/target/anki-backend"
       },
       "configurations": {
         "production": {
@@ -29,7 +29,7 @@
       "executor": "@monodon/rust:lint",
       "outputs": ["{options.target-dir}"],
       "options": {
-        "target-dir": "dist/target/anki_backend"
+        "target-dir": "dist/target/anki-backend"
       }
     }
   },

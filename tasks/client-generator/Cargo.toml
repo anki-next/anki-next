@@ -1,5 +1,5 @@
 [package]
-name = "client_generator"
+name = "client-generator"
 version = "0.1.0"
 edition = "2021"
 

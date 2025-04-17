@@ -16,7 +16,7 @@
     "build": {
       "dependsOn": [
         {
-          "projects": "client_generator",
+          "projects": "client-generator",
           "target": "run"
         },
         "protobuf-ts",
@@ -27,5 +27,5 @@
       "dependsOn": ["build"]
     }
   },
-  "implicitDependencies": ["client_generator"]
+  "implicitDependencies": ["client-generator"]
 }
