@@ -10,3 +10,4 @@ members = [
 exclude = ['anki']
 
 [workspace.dependencies]
+anki-backend = { path = "packages/anki-backend" }

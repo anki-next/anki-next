@@ -5,6 +5,10 @@ edition = "2021"
 
 
 [dependencies]
+axum = { version = "0.8.3", features = ["macros"] }
+tokio = "1.44.2"
+anki-backend = { workspace = true }
+clap = { version = "4.5.36", features = ["derive"] }
 
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
