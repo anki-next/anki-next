@@ -1,5 +1,5 @@
 use convert_case::{Case, Casing};
-use std::{fs, io::Write, path::PathBuf};
+use std::{fs, io::Write, path::Path};
 
 use anki_proto_gen::BackendService;
 
@@ -11,7 +11,7 @@ fn short_service_name(name: &str) -> (String, String) {
     )
 }
 
-pub(crate) fn generate(dir: &PathBuf, services: &[BackendService]) {
+pub(crate) fn generate(dir: &Path, services: &[BackendService]) {
     let file = dir.join("service.ts");
 
     let mut contents = vec![];
