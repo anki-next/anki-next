@@ -11,6 +11,8 @@ use axum::{
 };
 use clap::{Parser, Subcommand};
 use tokio::net::TcpListener;
+use tower_http::trace::TraceLayer;
+use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 
 #[derive(Parser)]
 #[command(version, about, long_about = None)]
@@ -34,18 +36,34 @@ enum Commands {
 async fn main() {
     let cli = Cli::parse();
 
-    if matches!(cli.command, Some(Commands::Dev {})) {
-        let backend = Arc::new(
-            anki_backend::AnkiBackend::new(cli.langs.unwrap_or(vec!["en".to_owned()])).unwrap(),
-        );
-        let app = Router::new()
-            .route("/rpc/{service}/{method}", post(rpc))
-            .with_state(AppState { backend });
+    tracing_subscriber::registry()
+        .with(
+            tracing_subscriber::EnvFilter::try_from_default_env().unwrap_or_else(|_| {
+                format!(
+                    "{}=debug,tower_http=debug,axum::rejection=trace",
+                    env!("CARGO_CRATE_NAME")
+                )
+                .into()
+            }),
+        )
+        .with(tracing_subscriber::fmt::layer())
+        .init();
 
-        let listener = TcpListener::bind(format!("127.0.0.1:{}", cli.port))
-            .await
-            .unwrap();
-        axum::serve(listener, app).await.unwrap();
+    match cli.command.unwrap_or(Commands::Dev {}) {
+        Commands::Dev {} => {
+            let backend = Arc::new(
+                anki_backend::AnkiBackend::new(cli.langs.unwrap_or(vec!["en".to_owned()])).unwrap(),
+            );
+            let app = Router::new()
+                .route("/rpc/{service}/{method}", post(rpc))
+                .with_state(AppState { backend })
+                .layer(TraceLayer::new_for_http());
+
+            let addr = format!("127.0.0.1:{}", cli.port);
+            tracing::info!("rpc serve at {}", addr);
+            let listener = TcpListener::bind(addr).await.unwrap();
+            axum::serve(listener, app).await.unwrap();
+        }
     }
 }
 
@@ -67,7 +85,7 @@ async fn rpc(
 
     Response::builder()
         .status(200)
-        .header("X-Rpc-Error", if error { 1 } else { 0 })
+        .header("x-rpc-error", if error { 1 } else { 0 })
         .body(Body::from(result))
         .unwrap()
 }
