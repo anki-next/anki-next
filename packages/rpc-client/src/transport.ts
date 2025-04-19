@@ -1,26 +1,102 @@
-import { RpcTransport } from '@protobuf-ts/runtime-rpc';
+import {
+  Deferred,
+  RpcTransport,
+  UnaryCall,
+  MethodInfo,
+  RpcMetadata,
+  RpcStatus,
+  RpcOptions,
+  DuplexStreamingCall,
+  ClientStreamingCall,
+  ServerStreamingCall,
+} from '@protobuf-ts/runtime-rpc';
+import { SERVICES, METHODS, ServiceMapType } from './generated/service.ts';
+import { BackendError } from './generated/protobuf/anki/backend.ts';
 
 export interface AnkiRpcTransport extends Pick<RpcTransport, 'mergeOptions'> {
   request(
     serviceId: number,
     methodId: number,
     payload: Uint8Array
-  ): Promise<Uint8Array>;
+  ): Promise<[Uint8Array, undefined] | [undefined, Uint8Array]>;
 }
 
-export function createRpcTransport(transport: AnkiRpcTransport): RpcTransport {
-  const notImplemented = () => {
-    throw new Error('not implemented');
-  };
-  return {
-    mergeOptions(options) {
-      return transport.mergeOptions(options);
-    },
-    unary(_method, _input, _options) {
-      throw new Error('todo');
-    },
-    serverStreaming: notImplemented,
-    clientStreaming: notImplemented,
-    duplex: notImplemented,
-  };
+const notImplemented = (): never => {
+  throw new Error('not implemented');
+};
+
+export class Transport implements RpcTransport {
+  constructor(private transport: AnkiRpcTransport) {}
+
+  mergeOptions(options?: Partial<RpcOptions>): RpcOptions {
+    return this.transport.mergeOptions(options);
+  }
+
+  unary<I extends object, O extends object>(
+    method: MethodInfo<I, O>,
+    input: I,
+    options: RpcOptions
+  ): UnaryCall<I, O> {
+    const serviceName = method.service.typeName
+      .split('.')
+      .pop() as keyof ServiceMapType;
+    const serviceMeta = SERVICES[serviceName];
+    if (!serviceMeta) {
+      throw new Error('service not found');
+    }
+    const serviceId = serviceMeta[0];
+
+    const methodName = method.name;
+    const methodId = (METHODS[serviceName] as never)[methodName];
+
+    const defHeader = new Deferred<RpcMetadata>(),
+      defMessage = new Deferred<O>(),
+      defStatus = new Deferred<RpcStatus>(),
+      defTrailer = new Deferred<RpcMetadata>();
+
+    defHeader.resolve({});
+    this.transport
+      .request(serviceId, methodId, method.I.toBinary(input))
+      .then((res) => {
+        const [value, err] = res;
+        if (err) {
+          defMessage.reject(BackendError.fromBinary(err));
+        } else {
+          defMessage.resolve(method.O.fromBinary(value));
+        }
+        defTrailer.resolve({});
+        defStatus.resolve({
+          code: 'OK',
+          detail: 'OK',
+        });
+      });
+
+    return new UnaryCall(
+      method,
+      options.meta || {},
+      input,
+      defHeader.promise,
+      defMessage.promise,
+      defStatus.promise,
+      defTrailer.promise
+    );
+  }
+
+  duplex<I extends object, O extends object>(): DuplexStreamingCall<I, O> {
+    return notImplemented();
+  }
+
+  clientStreaming<I extends object, O extends object>(): ClientStreamingCall<
+    I,
+    O
+  > {
+    return notImplemented();
+  }
+
+  serverStreaming<I extends object, O extends object>(): ServerStreamingCall<
+    I,
+    O
+  > {
+    return notImplemented();
+  }
 }
