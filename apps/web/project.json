@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "anki-next-web",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application"
 }
