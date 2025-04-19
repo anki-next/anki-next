@@ -5,16 +5,16 @@
   "tsx": true,
   "tailwind": {
     "config": "",
-    "css": "src/styles/globals.css",
+    "css": "../../packages/ui/src/styles/globals.css",
     "baseColor": "neutral",
     "cssVariables": true
   },
   "iconLibrary": "lucide",
   "aliases": {
-    "components": "@anki-next/ui/components",
+    "components": "@/components",
+    "hooks": "@/hooks",
+    "lib": "@/lib",
     "utils": "@anki-next/ui/lib/utils",
-    "hooks": "@anki-next/ui/hooks",
-    "lib": "@anki-next/ui/lib",
     "ui": "@anki-next/ui/components"
   }
 }
