@@ -4,14 +4,17 @@ let
   lib = pkgs.lib;
 in
 pkgs.mkShellNoCC {
-  packages = with pkgs; [
-    llvmPackages_19.libcxxClang
-    nixfmt-rfc-style
-    rustup
-    protobuf_21
-    just
-    git
-    (lib.optionals stdenv.isLinux [
+  packages =
+    with pkgs;
+    [
+      llvmPackages_19.libcxxClang
+      nixfmt-rfc-style
+      rustup
+      protobuf_21
+      just
+      git
+    ]
+    ++ lib.optionals stdenv.isLinux [
       nodejs_23
       corepack_23
       pkg-config
@@ -29,6 +32,5 @@ pkgs.mkShellNoCC {
       pango
       webkitgtk_4_1
       openssl
-    ])
-  ];
+    ];
 }
