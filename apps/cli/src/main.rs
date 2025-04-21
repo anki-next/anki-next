@@ -11,6 +11,7 @@ use axum::{
 };
 use clap::{Parser, Subcommand};
 use tokio::net::TcpListener;
+use tower_http::cors::{Any, CorsLayer};
 use tower_http::trace::TraceLayer;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 
@@ -57,7 +58,8 @@ async fn main() {
             let app = Router::new()
                 .route("/rpc/{service}/{method}", post(rpc))
                 .with_state(AppState { backend })
-                .layer(TraceLayer::new_for_http());
+                .layer(TraceLayer::new_for_http())
+                .layer(CorsLayer::new().allow_origin(Any).expose_headers(Any));
 
             let addr = format!("127.0.0.1:{}", cli.port);
             tracing::info!("rpc serve at {}", addr);

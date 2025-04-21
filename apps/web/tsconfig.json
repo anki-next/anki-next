@@ -3,6 +3,9 @@
   "include": [],
   "references": [
     {
+      "path": "../../packages/rpc-client"
+    },
+    {
       "path": "../../packages/ui"
     },
     {

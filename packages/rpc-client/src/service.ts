@@ -34,7 +34,7 @@ export function createAnkiService(transport: AnkiRpcTransport): AnkiService {
                   for (const ctor of [backendServiceCtor, serviceCtor]) {
                     const instance = clientInstance(ctor);
                     if (methodName in instance) {
-                      return instance[methodName].apply(null, args);
+                      return instance[methodName].apply(instance, args);
                     }
                   }
                 },

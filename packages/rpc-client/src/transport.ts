@@ -12,8 +12,10 @@ import {
 } from '@protobuf-ts/runtime-rpc';
 import { SERVICES, METHODS, ServiceMapType } from './generated/service.ts';
 import { BackendError } from './generated/protobuf/anki/backend.ts';
+import { toCamelCase } from 'remeda';
 
-export interface AnkiRpcTransport extends Pick<RpcTransport, 'mergeOptions'> {
+export interface AnkiRpcTransport
+  extends Partial<Pick<RpcTransport, 'mergeOptions'>> {
   request(
     serviceId: number,
     methodId: number,
@@ -29,7 +31,7 @@ export class Transport implements RpcTransport {
   constructor(private transport: AnkiRpcTransport) {}
 
   mergeOptions(options?: Partial<RpcOptions>): RpcOptions {
-    return this.transport.mergeOptions(options);
+    return this.transport.mergeOptions?.(options) || {};
   }
 
   unary<I extends object, O extends object>(
@@ -37,17 +39,19 @@ export class Transport implements RpcTransport {
     input: I,
     options: RpcOptions
   ): UnaryCall<I, O> {
-    const serviceName = method.service.typeName
-      .split('.')
-      .pop() as keyof ServiceMapType;
+    const serviceName = toCamelCase(
+      method.service.typeName
+        .split('.')
+        .pop()
+        ?.replace(/Service$/, '') as keyof ServiceMapType
+    );
     const serviceMeta = SERVICES[serviceName];
     if (!serviceMeta) {
       throw new Error('service not found');
     }
     const serviceId = serviceMeta[0];
 
-    const methodName = method.name;
-    const methodId = (METHODS[serviceName] as never)[methodName];
+    const methodId = (METHODS[serviceName] as never)[method.localName];
 
     const defHeader = new Deferred<RpcMetadata>(),
       defMessage = new Deferred<O>(),
