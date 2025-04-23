@@ -43,6 +43,7 @@ export class Transport implements RpcTransport {
       method.service.typeName
         .split('.')
         .pop()
+        ?.replace(/^Backend/, '')
         ?.replace(/Service$/, '') as keyof ServiceMapType
     );
     const serviceMeta = SERVICES[serviceName];
