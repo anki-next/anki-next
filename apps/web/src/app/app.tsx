@@ -1,5 +1,6 @@
 import { Button } from '@anki-next/ui/components/button';
 import { AnkiRpcTransport, createAnkiService } from '@anki-next/rpc-client';
+import { OpenCollectionRequest } from '@anki-next/rpc-client/proto/collection.js';
 
 const service = createAnkiService({
   async request(serviceId, methodId, payload) {
@@ -21,9 +22,23 @@ const service = createAnkiService({
 
 (window as any).service = service;
 
-(async function () {
-  console.log(await service.collection.openCollection({}));
-})();
+function openCollectionArgs(
+  collectionPath: ':memory:' | string
+): OpenCollectionRequest {
+  if (collectionPath === ':memory:') {
+    return {
+      collectionPath,
+      mediaDbPath: '',
+      mediaFolderPath: '',
+    };
+  }
+
+  return {
+    collectionPath,
+    mediaDbPath: collectionPath.replace(/\.anki2$/, '.media.db2'),
+    mediaFolderPath: collectionPath.replace(/\.anki2$/, '.media'),
+  };
+}
 
 export function App() {
   return (

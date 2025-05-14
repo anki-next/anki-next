@@ -13,6 +13,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
+    },
+    "./proto/": {
+      "development": "./src/generated/protobuf/anki/",
+      "import": "./dist/generated/protobuf/anki/"
     }
   },
   "devDependencies": {
