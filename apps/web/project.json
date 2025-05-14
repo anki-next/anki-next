@@ -1,5 +1,11 @@
 {
   "name": "anki-next-web",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application"
+  "projectType": "application",
+  "targets": {
+    "dev": {
+      "dependsOn": ["^dev"]
+    }
+  },
+  "implicitDependencies": ["anki-next-cli"]
 }

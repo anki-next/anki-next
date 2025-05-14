@@ -38,7 +38,7 @@
         "target-dir": "dist/target/anki-next-cli"
       }
     },
-    "run": {
+    "dev": {
       "executor": "@monodon/rust:run",
       "outputs": ["{options.target-dir}"],
       "options": {
@@ -46,7 +46,7 @@
       },
       "configurations": {
         "production": {
-          "release": true
+          "release": false
         }
       }
     }

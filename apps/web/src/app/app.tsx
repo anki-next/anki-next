@@ -12,7 +12,7 @@ const service = createAnkiService({
       }
     );
     if (response.ok) {
-      const hasError = response.headers.get('x-rpc-error');
+      const hasError = response.headers.get('x-rpc-error') === '1';
       const body = await response.bytes();
       return hasError ? [undefined, body] : [body, undefined];
     }

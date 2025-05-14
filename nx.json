@@ -25,6 +25,10 @@
     "build": {
       "dependsOn": ["^build", "prebuild"],
       "cache": true
+    },
+    "dev": {
+      "cache": false,
+      "continuous": true
     }
   },
   "plugins": [
@@ -101,5 +105,6 @@
         "linter": "eslint"
       }
     }
-  }
+  },
+  "parallel": true
 }
