@@ -4,8 +4,10 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-anki = { path = "../../anki/rslib", features = ["rustls"] }
-anki_proto = { path = "../../anki/rslib/proto" }
+anki = { git = "https://github.com/ankitects/anki.git", rev = "ad073ab10c8d9877224db79157591e2d041642aa", features = [
+  "rustls",
+] }
+anki_proto = { git = "https://github.com/ankitects/anki.git", rev = "ad073ab10c8d9877224db79157591e2d041642aa" }
 prost = { version = "0.13.5" }
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

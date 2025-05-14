@@ -17,7 +17,7 @@
     ],
     "upstream/anki": [
       {
-        "runtime": "git submodule status anki"
+        "runtime": "echo ad073ab10c8d9877224db79157591e2d041642aa"
       }
     ]
   },
